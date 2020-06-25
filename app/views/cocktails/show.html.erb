@@ -1,0 +1,44 @@
+<div class="container cocktail-page">
+
+  <div class="cocktail-desc">
+    <h1> <%= @cocktail.name %> </h1>
+
+    <div>
+      <% if @cocktail.doses.empty? %>
+      <p>
+        No ingredients yet. Add yours!
+      </p>
+      <% else %>
+      <h3> Ingredients </h3>
+      <% end %>
+    </div>
+
+    <ul>
+      <% @cocktail.doses.each do |dose| %>
+      <li>
+        <i class="fa fa-glass"></i> <strong> <%= dose.ingredient.name %> </strong>
+        <%= link_to "Delete", dose_path(dose), class: "btn btn-outline-danger btn-xs", method: :delete  %>
+      </li>
+      <p><%= dose.description %></p>
+      <% end %>
+    </ul>
+    <div>
+      <%= link_to "Add ingredient", new_cocktail_dose_path(@cocktail), class: "btn btn-outline-primary", id: "ingredient-add-button"%>
+      <%= link_to "Go back", cocktails_path, class: "btn btn-outline-warning" %>
+      <%= link_to 'Delete Cocktail', @cocktail, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-xs" %>
+    </div>
+  </div>
+
+  <div>
+    <div class="row form-width">
+      <div class="form-cocktail">
+        <%= simple_form_for [@cocktail, @dose] do |f| %>
+        <%= f.input :ingredient, collection: Ingredient.order(:name),  prompt: "Pick one from list" %>
+        <%= f.input :description %>
+        <%= f.submit "Submit", class: "btn btn-outline-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+</div>

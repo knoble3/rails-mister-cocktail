@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1578404249298-291ee2775e55?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80);">
+  <div class="banner-container">
+    <h1>Cocktail Recipies</h1>
+    <p>Find your favorites and some classics.</p>
+  </div>
+</div>
+  <div class="row">
+    <% @cocktails.each do |cocktail| %>
+
+    <div class="col-xs-12 col-sm-4">
+      <%= link_to cocktail_path(cocktail), class: "card-link" do %>
+      <div class="card-container">
+      <div class="card-category">
+        <h2> <%= cocktail.name  %> </h2>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <% end %>
+</div>
+<div class="path">
+  <%= link_to "Add your cocktail", new_cocktail_path, class: "btn btn-primary" %>
+</div>
+</div>
