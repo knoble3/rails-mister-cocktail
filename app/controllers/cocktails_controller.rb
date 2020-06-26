@@ -3,6 +3,10 @@ class CocktailsController < ApplicationController
 
   def index
     @cocktails = Cocktail.all
+    query = params["cocktail-search"]
+      if query && query != ""
+        @cocktails = Cocktail.where("lower(name) LIKE '%#{query.downcase}%'")
+      end
   end
 
   def show

@@ -27,8 +27,9 @@
 
       <% @cocktail.doses.each do |dose| %>
       <div class="d-flex">
-      <p><i class="fas fa-glass-whiskey"></i></i> <strong> <%= dose.ingredient.name %> - </strong><%= dose.description %> - </p>
-        <%= link_to "Remove", dose_path(dose), method: :delete  %>
+      <p><i class="fas fa-glass-whiskey"></i></i> <strong> <%= dose.ingredient.name %> - </strong><%= dose.description %>
+        (<%= link_to "Remove", dose_path(dose), method: :delete  %>)
+        </p>
       </div>
       <% end %>
 
